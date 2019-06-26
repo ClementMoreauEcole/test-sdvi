@@ -8,6 +8,7 @@ use App\Service\Dao\PizzaDao;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Proxies\__CG__\App\Entity\Pizza;
 
 /**
  * Class PizzaController
@@ -40,6 +41,18 @@ class PizzaController extends AbstractController
      */
     public function detailAction(int $pizzaId): Response
     {
-        return $this->render("Pizza/detail.html.twig");
+        $repository=$this->getDoctrine()->getRepository(Pizza::class);
+        $Pizza = $repository->find($pizzaId);
+        var_dump($Pizza->getNom());
+        
+        $pizzaDao = new Pizza();
+        var_dump($pizzaDao->getQuantiteIngredients());
+        exit;
+        $Ingredients = $pizzaDao->getDetailPizza($pizzaId);
+
+        return $this->render("Pizza/detail.html.twig", [
+            "pizza" => $Pizza,
+            "Ingredients" => $Ingredients,
+        ]);
     }
 }

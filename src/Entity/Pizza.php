@@ -30,15 +30,21 @@ class Pizza
 
     /**
      * @var Collection
+    //  * @ORM\OneToMany(targetEntity="App\Entity\IngredientPizza", mappedBy="quantite")
      */
     private $quantiteIngredients;
 
+   
+
+
     /**
+     * 
      * Constructor
      */
     public function __construct()
     {
         $this->quantiteIngredients = new ArrayCollection();
+        
     }
 
     /**

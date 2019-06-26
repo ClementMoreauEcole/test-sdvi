@@ -5,5 +5,15 @@
 {% block titrePage %}{% endblock %}
 
 {% block body %}
-    Le détail de la pizza sélectionnée
+    <div class="titre_detail_pizza">
+        <h1>La pizza {{pizza.nom}}</h1>
+    <div>
+    <div class="corps_detail_pizza">
+        {{dump(pizza)}}
+        {{dump(Ingredients)}}
+        {# <p>Prix de fabrication</p>{{pizza.quantiteIngredients}}
+        {% for ingredients in pizza.quantiteIngredients.quantite %}
+            <h1>{{ingredients.ingredient }}</h1>
+        {% endfor %} #}
+    </div>
 {% endblock %}
