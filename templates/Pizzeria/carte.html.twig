@@ -1,1 +1,35 @@
+{% extends "base.html.twig" %}
 
+{% block title %}Carte de {{ Carte.nom }} {% endblock %} 
+
+{% block titrePage %}
+    La carte de {{ Carte.nom }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <table>
+            <tr>
+                <th>Pizza</th>
+                <th>Prix</th>
+                <th></th>
+            </tr>
+            {% for pizza in Carte.Pizzas %}
+                <tr>
+                    <td>{{ pizza.nom}}</td>
+                    <td>
+                        {{Carte.marge}}€
+                        
+                    </td>
+                    <td>
+                    <a href="{{ path("app_pizza_detail", {"pizzaId": pizza.id}) }}">
+                        <i class="fa fa-caret-square-o-right tp-link" aria-hidden="true"></i>
+                    </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            
+            
+        </table>
+    </div>    {# {{dump(pizzeria)}} #}
+{% endblock %}

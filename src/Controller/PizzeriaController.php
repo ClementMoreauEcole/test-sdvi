@@ -9,6 +9,7 @@ use App\Service\Dao\PizzeriaDao;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Pizzeria;
 
 /**
  * Class PizzeriaController
@@ -41,6 +42,23 @@ class PizzeriaController extends AbstractController
      */
     public function detailAction($pizzeriaId): Response
     {
-        return new Response("Carte de la pizzéria {$pizzeriaId}");
+        $repository=$this->getDoctrine()->getRepository(Pizzeria::class);
+        // $pizzeria = $repository->find($pizzeriaId);
+        $pizzeriaDao = new PizzeriaDao($repository);
+        $Carte = $pizzeriaDao->getCartePizzeria(intval($pizzeriaId));
+        $marge = $Carte->getMarge();
+        // $Pizza = $repository->find(intval($pizzeriaId));
+        // $listeIngredient = $Pizza->getQuantiteIngredients();
+        // $cout = $marge;
+        // foreach( $listeIngredient as $ingredient)
+        // {
+        //     $cout += $ingredient->getIngredient()->getCout();
+        
+           
+        // }
+        return $this->render("Pizzeria/carte.html.twig", [
+            "Carte" => $Carte,
+        
+        ]);
     }
 }

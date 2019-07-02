@@ -43,16 +43,16 @@ class PizzaController extends AbstractController
     {
         $repository=$this->getDoctrine()->getRepository(Pizza::class);
         $Pizza = $repository->find($pizzaId);
-        var_dump($Pizza->getNom());
-        
-        $pizzaDao = new Pizza();
-        var_dump($pizzaDao->getQuantiteIngredients());
-        exit;
-        $Ingredients = $pizzaDao->getDetailPizza($pizzaId);
-
+        $listeIngredient = $Pizza->getQuantiteIngredients();
+        $cout = -1;
+        foreach( $listeIngredient as $ingredient)
+        {
+            $cout += $ingredient->getIngredient()->getCout();
+        }
         return $this->render("Pizza/detail.html.twig", [
             "pizza" => $Pizza,
-            "Ingredients" => $Ingredients,
+            "cout" => $cout,
+            
         ]);
     }
 }

@@ -1,19 +1,18 @@
 {% extends "base.html.twig" %}
 
-{% block title %}{% endblock %}
+{% block title %}Detail de {{pizza.nom}}{% endblock %}
 
-{% block titrePage %}{% endblock %}
+{% block titrePage %}La pizza {{pizza.nom}}{% endblock %}
 
 {% block body %}
-    <div class="titre_detail_pizza">
-        <h1>La pizza {{pizza.nom}}</h1>
-    <div>
     <div class="corps_detail_pizza">
-        {{dump(pizza)}}
-        {{dump(Ingredients)}}
-        {# <p>Prix de fabrication</p>{{pizza.quantiteIngredients}}
-        {% for ingredients in pizza.quantiteIngredients.quantite %}
-            <h1>{{ingredients.ingredient }}</h1>
-        {% endfor %} #}
+        <div>Prix de fabrication : <span style="font-size:30px;">{{cout}}€</span></div>
+        <div>Ingrédients :
+           
+                {% for ingredient in pizza.quantiteIngredients %}
+                     <span style="font-size: 30px;">{{ingredient.ingredient.nom}}</span>
+                {% endfor %}
+            
+        </div>
     </div>
 {% endblock %}

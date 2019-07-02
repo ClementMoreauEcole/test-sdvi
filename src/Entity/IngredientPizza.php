@@ -27,6 +27,7 @@ class IngredientPizza
      * La quanité de l'ingrédient en gramme
      * @var int
      * @ORM\Column(name="quantite", type="integer")
+     * 
      */
     private $quantite;
 
